@@ -1,0 +1,56 @@
+{
+  "expo": {
+    "name": "TravelNest",
+    "slug": "TravelNest",
+    "version": "1.0.0",
+    "orientation": "portrait",
+
+    "icon": "./assets/images/travelnest-app-icon.png",
+
+    "scheme": "TravelNest",
+
+    "userInterfaceStyle": "light",
+
+    "newArchEnabled": true,
+
+    "ios": {
+      "supportsTablet": true
+    },
+
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E5F4F1",
+        "foregroundImage": "./assets/images/travelnest-icon-foreground.png"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnablwed": false
+    },
+
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/travelnest-app-icon.png"
+    },
+
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/travelnest-logo.png",
+          "imageWidth": 240,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFFFFF",
+          "dark": {
+            "backgroundColor": "#FFFFFF"
+          }
+        }
+      ],
+      "@react-native-community/datetimepicker"
+    ],
+
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
