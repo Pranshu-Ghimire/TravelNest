@@ -319,6 +319,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#777777",
   },
+
+  summaryTitleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
 });
 
 export default function Home() {
@@ -501,7 +507,10 @@ export default function Home() {
                 style={styles.summaryCard}
                 onPress={() => setTripSelectType("packing")}
               >
-                <Text style={styles.summaryTitle}>🎒 Packing List</Text>
+                <View style={styles.summaryTitleRow}>
+                  <Ionicons name="briefcase-outline" size={20} color="#4B918C" />
+                  <Text style={styles.summaryTitle}>Packing List</Text>
+                </View>
                 <Text style={styles.summaryText}>
                   Keep track of what you need to bring.
                 </Text>
@@ -513,7 +522,10 @@ export default function Home() {
                 style={styles.summaryCard}
                 onPress={() => setTripSelectType("notes")}
               >
-                <Text style={styles.summaryTitle}>📝 Notes</Text>
+                <View style={styles.summaryTitleRow}>
+                  <Ionicons name="document-text-outline" size={20} color="#4B918C" />
+                  <Text style={styles.summaryTitle}>Notes</Text>
+                </View>
                 <Text style={styles.summaryText}>
                   Save important information for your trip.
                 </Text>
@@ -524,7 +536,10 @@ export default function Home() {
                 style={styles.summaryCard}
                 onPress={() => setTripSelectType("itinerary")}
               >
-                <Text style={styles.summaryTitle}>📅 Itinerary</Text>
+                <View style={styles.summaryTitleRow}>
+                  <Ionicons name="calendar-outline" size={20} color="#4B918C" />
+                  <Text style={styles.summaryTitle}>Itinerary</Text>
+                </View>
                 <Text style={styles.summaryText}>
                   Plan your activities and things to do.
                 </Text>

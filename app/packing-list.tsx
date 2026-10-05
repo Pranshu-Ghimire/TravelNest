@@ -1,8 +1,20 @@
 import { BackButton } from "@/components/back-button";
-import { getPackingItems, updatePackingItem } from "@/services/firebase";
+import {
+  createCustomPackingItem,
+  getPackingItems,
+  updatePackingItem,
+} from "@/services/firebase";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
@@ -30,10 +42,10 @@ const styles = StyleSheet.create({
   },
 
   tabs: {
-    flexDirection: "row",
-    marginTop: 24,
     paddingHorizontal: 20,
+    marginTop: 24,
     gap: 8,
+    alignItems: "center",
   },
 
   tab: {
@@ -43,6 +55,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#F1F5F4",
     borderWidth: 1,
     borderColor: "#E2EBE9",
+    minWidth: 70,
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   activeTab: {
@@ -140,17 +155,66 @@ const styles = StyleSheet.create({
     color: "#999999",
     fontWeight: "400",
   },
+
+  otherContainer: {
+    marginBottom: 8,
+  },
+
+  otherInputRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+
+  otherInput: {
+    flex: 1,
+    height: 48,
+    backgroundColor: "#F8FBFA",
+    borderWidth: 1,
+    borderColor: "#E6F0EE",
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    fontSize: 15,
+    color: "#333333",
+  },
+
+  addButton: {
+    height: 48,
+    paddingHorizontal: 18,
+    borderRadius: 12,
+    backgroundColor: "#4B918C",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  addButtonDisabled: {
+    opacity: 0.5,
+  },
+
+  addButtonText: {
+    color: "#FFFFFF",
+    fontSize: 14,
+    fontWeight: "600",
+  },
 });
 
 export default function PackingList() {
   const router = useRouter();
-  const searchParams = useLocalSearchParams<{ id?: string | string[] }>();
-  const id = Array.isArray(searchParams.id) ? searchParams.id[0] : searchParams.id;
+
+  const searchParams =
+    useLocalSearchParams<{ id?: string | string[] }>();
+
+  const id = Array.isArray(searchParams.id)
+    ? searchParams.id[0]
+    : searchParams.id;
 
   const [activeTab, setActiveTab] = useState("All");
 
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const [customItem, setCustomItem] = useState("");
+  const [addingCustomItem, setAddingCustomItem] = useState(false);
 
   useEffect(() => {
     const loadPackingItems = async () => {
@@ -191,14 +255,47 @@ export default function PackingList() {
     }
   };
 
+  const handleAddCustomItem = async () => {
+    const trimmedItem = customItem.trim();
+
+    if (!trimmedItem || !id || addingCustomItem) {
+      return;
+    }
+
+    try {
+      setAddingCustomItem(true);
+
+      const newItem = await createCustomPackingItem(
+        id,
+        trimmedItem
+      );
+
+      setItems((currentItems) => [
+        ...currentItems,
+        newItem,
+      ]);
+
+      setCustomItem("");
+    } catch (error) {
+      console.log(
+        "Error adding custom packing item:",
+        error
+      );
+    } finally {
+      setAddingCustomItem(false);
+    }
+  };
+
   const filteredItems =
     activeTab === "All"
       ? items
-      : items.filter((item) => item.category === activeTab);
+      : items.filter(
+        (item) => item.category === activeTab
+      );
 
   const categories =
     activeTab === "All"
-      ? ["Essentials", "Clothing", "Toiletries"]
+      ? ["Essentials", "Clothing", "Toiletries", "Other"]
       : [activeTab];
 
   return (
@@ -207,7 +304,10 @@ export default function PackingList() {
         <BackButton
           onPress={() => {
             if (id) {
-              router.push({ pathname: "/trip-details", params: { id } });
+              router.push({
+                pathname: "/trip-details",
+                params: { id },
+              });
             } else {
               router.back();
             }
@@ -221,8 +321,19 @@ export default function PackingList() {
         </Text>
       </View>
 
-      <View style={styles.tabs}>
-        {["All", "Essentials", "Clothing", "Toiletries"].map((tab) => (
+      {/* Category Tabs */}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.tabs}
+      >
+        {[
+          "All",
+          "Essentials",
+          "Clothing",
+          "Toiletries",
+          "Other",
+        ].map((tab) => (
           <Pressable
             key={tab}
             style={[
@@ -234,57 +345,120 @@ export default function PackingList() {
             <Text
               style={[
                 styles.tabText,
-                activeTab === tab && styles.activeTabText,
+                activeTab === tab &&
+                styles.activeTabText,
               ]}
             >
               {tab}
             </Text>
           </Pressable>
         ))}
-      </View>
+      </ScrollView>
 
+      {/* Loading */}
       {loading ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#4B918C" />
-        </View>
-      ) : items.length === 0 ? (
-        <View style={styles.emptyContainer}>
-          <Text style={styles.emptyText}>No packing items found for this trip.</Text>
+          <ActivityIndicator
+            size="large"
+            color="#4B918C"
+          />
         </View>
       ) : (
-        <ScrollView contentContainerStyle={styles.content}>
-          {categories.map((category) => {
-            const categoryItems = filteredItems.filter(
-              (item) => item.category === category
-            );
+        <ScrollView
+          contentContainerStyle={styles.content}
+        >
+          {/* Add Custom Item */}
+          {activeTab === "Other" && (
+            <View style={styles.otherContainer}>
+              <Text style={styles.sectionTitle}>
+                Add your own item
+              </Text>
 
-            if (categoryItems.length === 0) return null;
+              <View style={styles.otherInputRow}>
+                <TextInput
+                  style={styles.otherInput}
+                  placeholder="e.g. Camera"
+                  placeholderTextColor="#999999"
+                  value={customItem}
+                  onChangeText={setCustomItem}
+                  editable={!addingCustomItem}
+                />
+
+                <Pressable
+                  style={[
+                    styles.addButton,
+                    (!customItem.trim() ||
+                      addingCustomItem) &&
+                    styles.addButtonDisabled,
+                  ]}
+                  onPress={handleAddCustomItem}
+                  disabled={
+                    !customItem.trim() ||
+                    addingCustomItem
+                  }
+                >
+                  {addingCustomItem ? (
+                    <ActivityIndicator
+                      size="small"
+                      color="#FFFFFF"
+                    />
+                  ) : (
+                    <Text
+                      style={styles.addButtonText}
+                    >
+                      Add
+                    </Text>
+                  )}
+                </Pressable>
+              </View>
+            </View>
+          )}
+
+          {/* Packing Items */}
+          {categories.map((category) => {
+            const categoryItems =
+              filteredItems.filter(
+                (item) =>
+                  item.category === category
+              );
+
+            if (categoryItems.length === 0) {
+              return null;
+            }
 
             return (
               <View key={category}>
-                <Text style={styles.sectionTitle}>{category}</Text>
+                <Text style={styles.sectionTitle}>
+                  {category}
+                </Text>
 
                 {categoryItems.map((item) => (
                   <Pressable
                     key={item.id}
                     style={styles.item}
-                    onPress={() => toggleItem(item.id)}
+                    onPress={() =>
+                      toggleItem(item.id)
+                    }
                   >
                     <View
                       style={[
                         styles.checkbox,
-                        item.checked && styles.checkedBox,
+                        item.checked &&
+                        styles.checkedBox,
                       ]}
                     >
                       {item.checked && (
-                        <Text style={styles.check}>✓</Text>
+                        <Text style={styles.check}>
+                          ✓
+                        </Text>
                       )}
                     </View>
 
                     <Text
                       style={[
                         styles.itemText,
-                        item.checked && styles.checkedText,
+                        item.checked &&
+                        styles.checkedText,
                       ]}
                     >
                       {item.name}
@@ -294,6 +468,14 @@ export default function PackingList() {
               </View>
             );
           })}
+
+          {/* Empty state for Other */}
+          {activeTab === "Other" &&
+            filteredItems.length === 0 && (
+              <Text style={styles.emptyText}>
+                Add your own packing items above.
+              </Text>
+            )}
         </ScrollView>
       )}
     </SafeAreaView>

@@ -273,6 +273,34 @@ export async function createPackingItems(tripId: string) {
   }
 }
 
+export async function createCustomPackingItem(
+  tripId: string,
+  name: string
+) {
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("User is not logged in");
+  }
+
+  const itemRef = await addDoc(collection(firestore, "packingItems"), {
+    tripId,
+    userId: user.uid,
+    name,
+    category: "Other",
+    checked: false,
+  });
+
+  return {
+    id: itemRef.id,
+    tripId,
+    userId: user.uid,
+    name,
+    category: "Other",
+    checked: false,
+  };
+}
+
 export async function getNotes(tripId: string) {
   const user = auth.currentUser;
 
