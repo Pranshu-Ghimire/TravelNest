@@ -136,71 +136,71 @@ export default function Signup() {
   };
 
   return (
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.topSection}>
-          <BackButton />
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.topSection}>
+        <BackButton />
 
-          <Image
-            source={require("@/assets/images/travelnest-logo.png")}
-            style={styles.logoImage}
-            resizeMode="contain"
-          />
+        <Image
+          source={require("@/assets/images/travelnest-logo.png")}
+          style={styles.logoImage}
+          resizeMode="contain"
+        />
 
-          <View style={styles.headerContainer}>
-            <Text style={styles.headerTitle}>Create your account</Text>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerTitle}>Create your account</Text>
 
-            <Text style={styles.headerSubtitle}>
-              Join TravelNest and start planning your next adventure.
-            </Text>
-          </View>
+          <Text style={styles.headerSubtitle}>
+            Join TravelNest and start planning your next adventure.
+          </Text>
         </View>
+      </View>
 
-        <View style={styles.formContainer}>
-          <InputField
-            label="Full Name"
-            placeholder="Enter your full name"
-            value={fullName}
-            onChangeText={setFullName}
-            error={fieldsError.fullName}
-          />
+      <View style={styles.formContainer}>
+        <InputField
+          label="Full Name"
+          placeholder="Enter your full name"
+          value={fullName}
+          onChangeText={setFullName}
+          error={fieldsError.fullName}
+        />
 
-          <InputField
-            label="Email"
-            autoCapitalize="none"
-            placeholder="Enter your email"
-            value={email}
-            onChangeText={setEmail}
-            error={fieldsError.email}
-          />
+        <InputField
+          label="Email"
+          autoCapitalize="none"
+          placeholder="Enter your email"
+          value={email}
+          onChangeText={setEmail}
+          error={fieldsError.email}
+        />
 
-          <InputField
-            label="Password"
-            autoCapitalize="none"
-            placeholder="Enter your password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-            error={fieldsError.password}
-          />
+        <InputField
+          label="Password"
+          autoCapitalize="none"
+          placeholder="Enter your password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          error={fieldsError.password}
+        />
 
-          <Button
-            title="Create Account"
-            type="primary"
-            onPress={handleSignUp}
-            disabled={isLoading}
-            loading={isLoading}
-          />
+        <Button
+          title="Create Account"
+          type="primary"
+          onPress={handleSignUp}
+          disabled={isLoading}
+          loading={isLoading}
+        />
 
-          <View style={styles.loginContainer}>
-            <Text style={styles.loginText}>
-              Already have an account?{" "}
-            </Text>
+        <View style={styles.loginContainer}>
+          <Text style={styles.loginText}>
+            Already have an account?{" "}
+          </Text>
 
-            <Link href="/login" style={styles.loginTextLink}>
-              Log In
-            </Link>
-          </View>
+          <Link href="/login" style={styles.loginTextLink}>
+            Log In
+          </Link>
         </View>
-      </SafeAreaView>
+      </View>
+    </SafeAreaView>
   );
 }

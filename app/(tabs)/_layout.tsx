@@ -7,22 +7,22 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-  headerShown: false,
-  tabBarActiveTintColor: "#4B918C",
-  tabBarInactiveTintColor: "#AAAAAA",
-  tabBarShowLabel: true,
-  tabBarLabelStyle: {
-    fontSize: 11,
-    fontWeight: "500",
-    marginTop: 2,
-  },
-  tabBarStyle: {
-    height: 65,
-    paddingBottom: 7,
-    paddingTop: 5,
-    backgroundColor: "#FFFFFF",
-  },
-}}
+        headerShown: false,
+        tabBarActiveTintColor: "#4B918C",
+        tabBarInactiveTintColor: "#AAAAAA",
+        tabBarShowLabel: true,
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: "500",
+          marginTop: 2,
+        },
+        tabBarStyle: {
+          height: 65,
+          paddingBottom: 7,
+          paddingTop: 5,
+          backgroundColor: "#FFFFFF",
+        },
+      }}
     >
       <Tabs.Screen
         name="homepage"
@@ -55,4 +55,4 @@ export default function TabLayout() {
       />
     </Tabs>
   );
-}4
+}

@@ -328,7 +328,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [packedSummary, setPackedSummary] = useState({ checked: 0, total: 0 });
   const [notesCount, setNotesCount] = useState(0);
-  const [tripSelectType, setTripSelectType] = useState< "packing" | "notes" | "itinerary" | null>(null);
+  const [tripSelectType, setTripSelectType] = useState<"packing" | "notes" | "itinerary" | null>(null);
 
   const hasInitialLoaded = useRef(false);
 
@@ -388,23 +388,23 @@ export default function Home() {
   );
 
   const handleSelectTrip = (selectedTripId: string) => {
-  if (tripSelectType === "packing") {
-    router.push({
-      pathname: "/packing-list" as any,
-      params: { id: selectedTripId },
-    });
-  } else if (tripSelectType === "notes") {
-    router.push({
-      pathname: "/notes" as any,
-      params: { id: selectedTripId },
-    });
-  } else if (tripSelectType === "itinerary") {
-    router.push({
-      pathname: "/itinerary" as any,
-      params: { id: selectedTripId },
-    });
-  }
-};
+    if (tripSelectType === "packing") {
+      router.push({
+        pathname: "/packing-list" as any,
+        params: { id: selectedTripId },
+      });
+    } else if (tripSelectType === "notes") {
+      router.push({
+        pathname: "/notes" as any,
+        params: { id: selectedTripId },
+      });
+    } else if (tripSelectType === "itinerary") {
+      router.push({
+        pathname: "/itinerary" as any,
+        params: { id: selectedTripId },
+      });
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -520,16 +520,16 @@ export default function Home() {
                 <Text style={styles.summaryLink}>View Notes →</Text>
               </Pressable>
 
-<Pressable
-  style={styles.summaryCard}
-  onPress={() => setTripSelectType("itinerary")}
->
-  <Text style={styles.summaryTitle}>📅 Itinerary</Text>
-  <Text style={styles.summaryText}>
-    Plan your activities and things to do.
-  </Text>
-  <Text style={styles.summaryLink}>View Itinerary →</Text>
-</Pressable>
+              <Pressable
+                style={styles.summaryCard}
+                onPress={() => setTripSelectType("itinerary")}
+              >
+                <Text style={styles.summaryTitle}>📅 Itinerary</Text>
+                <Text style={styles.summaryText}>
+                  Plan your activities and things to do.
+                </Text>
+                <Text style={styles.summaryLink}>View Itinerary →</Text>
+              </Pressable>
             </View>
           </>
         )}

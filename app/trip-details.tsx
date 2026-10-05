@@ -321,7 +321,7 @@ export default function TripDetails() {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Top Back Navigation */}
         <View style={styles.headerRow}>
-          <BackButton fallbackRoute="/(tabs)/homepage"/>
+          <BackButton fallbackRoute="/(tabs)/homepage" />
         </View>
 
         {/* Trip Title & Location Banner */}

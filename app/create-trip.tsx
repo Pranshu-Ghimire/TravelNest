@@ -3,7 +3,7 @@ import { createPackingItems, saveTrip } from "@/services/firebase";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View, ActivityIndicator } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
@@ -91,6 +91,13 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
 
+  buttonDisabled: {
+    opacity: 0.7,
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: 8,
+  },
+
   placeholderText: {
     fontSize: 15,
     color: "#999999",
@@ -124,6 +131,8 @@ export default function CreateTrip() {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [description, setDescription] = useState("");
+
+  const [isCreating, setIsCreating] = useState(false);
 
   const [isStartDatePickerVisible, setIsStartDatePickerVisible] = useState(false);
   const [isEndDatePickerVisible, setIsEndDatePickerVisible] = useState(false);
@@ -172,11 +181,14 @@ export default function CreateTrip() {
   };
 
   const handleCreateTrip = async () => {
+    if (isCreating) return;
+
     if (!tripName || !destination || !startDate || !endDate) {
       Toast.show({
         type: "error",
         text1: "Please fill in all required fields",
-        text2: "Trip Name, Destination, Start Date, and End Date are required.",
+        text2:
+          "Trip Name, Destination, Start Date, and End Date are required.",
       });
       return;
     }
@@ -193,6 +205,8 @@ export default function CreateTrip() {
     const travelDateStr = `${formatToISO(startDate)} - ${formatToISO(endDate)}`;
 
     try {
+      setIsCreating(true);
+
       const trip = await saveTrip(
         tripName,
         destination,
@@ -216,6 +230,8 @@ export default function CreateTrip() {
         text1: "Failed to create trip",
         text2: error?.message || "Unknown error",
       });
+    } finally {
+      setIsCreating(false);
     }
   };
 
@@ -290,8 +306,19 @@ export default function CreateTrip() {
             />
           </View>
 
-          <Pressable style={styles.button} onPress={handleCreateTrip}>
-            <Text style={styles.buttonText}>Create Trip</Text>
+          <Pressable
+            style={[styles.button, isCreating && styles.buttonDisabled]}
+            onPress={handleCreateTrip}
+            disabled={isCreating}
+          >
+            {isCreating ? (
+              <>
+                <ActivityIndicator size="small" color="#FFFFFF" />
+                <Text style={styles.buttonText}>Creating Trip...</Text>
+              </>
+            ) : (
+              <Text style={styles.buttonText}>Create Trip</Text>
+            )}
           </Pressable>
         </View>
 

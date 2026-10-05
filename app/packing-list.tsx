@@ -29,117 +29,117 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 
-tabs: {
-  flexDirection: "row",
-  marginTop: 24,
-  paddingHorizontal: 20,
-  gap: 8,
-},
+  tabs: {
+    flexDirection: "row",
+    marginTop: 24,
+    paddingHorizontal: 20,
+    gap: 8,
+  },
 
-tab: {
-  paddingHorizontal: 15,
-  paddingVertical: 9,
-  borderRadius: 20,
-  backgroundColor: "#F1F5F4",
-  borderWidth: 1,
-  borderColor: "#E2EBE9",
-},
+  tab: {
+    paddingHorizontal: 15,
+    paddingVertical: 9,
+    borderRadius: 20,
+    backgroundColor: "#F1F5F4",
+    borderWidth: 1,
+    borderColor: "#E2EBE9",
+  },
 
-activeTab: {
-  backgroundColor: "#4B918C",
-  borderColor: "#4B918C",
-},
+  activeTab: {
+    backgroundColor: "#4B918C",
+    borderColor: "#4B918C",
+  },
 
-tabText: {
-  fontSize: 13,
-  color: "#555555",
-  fontWeight: "500",
-},
+  tabText: {
+    fontSize: 13,
+    color: "#555555",
+    fontWeight: "500",
+  },
 
-activeTabText: {
-  color: "#FFFFFF",
-  fontWeight: "600",
-},
+  activeTabText: {
+    color: "#FFFFFF",
+    fontWeight: "600",
+  },
 
-content: {
-  paddingHorizontal: 20,
-  paddingTop: 8,
-  paddingBottom: 40,
-},
+  content: {
+    paddingHorizontal: 20,
+    paddingTop: 8,
+    paddingBottom: 40,
+  },
 
-loadingContainer: {
-  flex: 1,
-  justifyContent: "center",
-  alignItems: "center",
-},
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
-emptyContainer: {
-  flex: 1,
-  justifyContent: "center",
-  alignItems: "center",
-  paddingHorizontal: 30,
-},
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 30,
+  },
 
-emptyText: {
-  fontSize: 15,
-  color: "#777777",
-  textAlign: "center",
-},
+  emptyText: {
+    fontSize: 15,
+    color: "#777777",
+    textAlign: "center",
+  },
 
-sectionTitle: {
-  fontSize: 17,
-  fontWeight: "700",
-  color: "#222222",
-  marginTop: 18,
-  marginBottom: 10,
-},
+  sectionTitle: {
+    fontSize: 17,
+    fontWeight: "700",
+    color: "#222222",
+    marginTop: 18,
+    marginBottom: 10,
+  },
 
-item: {
-  flexDirection: "row",
-  alignItems: "center",
-  backgroundColor: "#F8FBFA",
-  paddingHorizontal: 15,
-  paddingVertical: 14,
-  borderRadius: 14,
-  marginBottom: 9,
-  borderWidth: 1,
-  borderColor: "#E6F0EE",
-},
+  item: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#F8FBFA",
+    paddingHorizontal: 15,
+    paddingVertical: 14,
+    borderRadius: 14,
+    marginBottom: 9,
+    borderWidth: 1,
+    borderColor: "#E6F0EE",
+  },
 
-checkbox: {
-  width: 23,
-  height: 23,
-  borderWidth: 1.5,
-  borderColor: "#4B918C",
-  borderRadius: 7,
-  alignItems: "center",
-  justifyContent: "center",
-  marginRight: 13,
-},
+  checkbox: {
+    width: 23,
+    height: 23,
+    borderWidth: 1.5,
+    borderColor: "#4B918C",
+    borderRadius: 7,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 13,
+  },
 
-checkedBox: {
-  backgroundColor: "#4B918C",
-  borderColor: "#4B918C",
-},
+  checkedBox: {
+    backgroundColor: "#4B918C",
+    borderColor: "#4B918C",
+  },
 
-check: {
-  color: "#FFFFFF",
-  fontSize: 14,
-  fontWeight: "700",
-},
+  check: {
+    color: "#FFFFFF",
+    fontSize: 14,
+    fontWeight: "700",
+  },
 
-itemText: {
-  flex: 1,
-  fontSize: 15,
-  color: "#333333",
-  fontWeight: "500",
-},
+  itemText: {
+    flex: 1,
+    fontSize: 15,
+    color: "#333333",
+    fontWeight: "500",
+  },
 
-checkedText: {
-  textDecorationLine: "line-through",
-  color: "#999999",
-  fontWeight: "400",
-},
+  checkedText: {
+    textDecorationLine: "line-through",
+    color: "#999999",
+    fontWeight: "400",
+  },
 });
 
 export default function PackingList() {
@@ -204,15 +204,15 @@ export default function PackingList() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-<BackButton
-  onPress={() => {
-    if (id) {
-      router.push({ pathname: "/trip-details", params: { id } });
-    } else {
-      router.back();
-    }
-  }}
-/>
+        <BackButton
+          onPress={() => {
+            if (id) {
+              router.push({ pathname: "/trip-details", params: { id } });
+            } else {
+              router.back();
+            }
+          }}
+        />
 
         <Text style={styles.title}>Packing List</Text>
 

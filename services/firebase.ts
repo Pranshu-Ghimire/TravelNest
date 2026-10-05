@@ -33,7 +33,7 @@ export function initializeFirebase() {
     auth = getAuth(app);
   }
 
-  firestore= initializeFirestore(app,{});
+  firestore = initializeFirestore(app, {});
 
   return { app, auth, firestore };
 }
@@ -488,4 +488,4 @@ export async function deleteItineraryItem(itemId: string) {
   await deleteDoc(itemRef);
 }
 
-export { app, auth, firestore};
+export { app, auth, firestore };

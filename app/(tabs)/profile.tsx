@@ -6,7 +6,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
-import { Alert,Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
@@ -22,27 +22,27 @@ const styles = StyleSheet.create({
   },
 
   sectionTitle: {
-  fontSize: 16,
-  fontWeight: "700",
-  color: "#222222",
-  marginHorizontal: 20,
-  marginBottom: 10,
-},
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#222222",
+    marginHorizontal: 20,
+    marginBottom: 10,
+  },
 
-menuCard: {
-  marginHorizontal: 20,
-  backgroundColor: "#FFFFFF",
-  borderRadius: 18,
-  borderWidth: 1,
-  borderColor: "#E6F0EE",
-  overflow: "hidden",
-},
+  menuCard: {
+    marginHorizontal: 20,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: "#E6F0EE",
+    overflow: "hidden",
+  },
 
-itemDivider: {
-  height: 1,
-  backgroundColor: "#EEF4F2",
-  marginLeft: 80,
-},
+  itemDivider: {
+    height: 1,
+    backgroundColor: "#EEF4F2",
+    marginLeft: 80,
+  },
 
   header: {
     height: 250,
@@ -70,12 +70,12 @@ itemDivider: {
   },
 
   pname: {
-  color: "#222222",
-  fontSize: 20,
-  fontWeight: "600",
-  marginTop: 35,
-  alignSelf: "center",
-},
+    color: "#222222",
+    fontSize: 20,
+    fontWeight: "600",
+    marginTop: 35,
+    alignSelf: "center",
+  },
 
   username: {
     color: "#777777",
@@ -84,25 +84,25 @@ itemDivider: {
   },
 
   logo: {
-  position: "absolute",
-  width: 110,
-  height: 110,
-  top: 180,
-  alignSelf: "center",
-  borderRadius: 55,
-},
+    position: "absolute",
+    width: 110,
+    height: 110,
+    top: 180,
+    alignSelf: "center",
+    borderRadius: 55,
+  },
 
   statsContainer: {
-  flexDirection: "row",
-  alignItems: "center",
-  marginTop: 20,
-  marginHorizontal: 20,
-  paddingVertical: 18,
-  backgroundColor: "#F8FBFA",
-  borderRadius: 18,
-  borderWidth: 1,
-  borderColor: "#E6F0EE",
-},
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 20,
+    marginHorizontal: 20,
+    paddingVertical: 18,
+    backgroundColor: "#F8FBFA",
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: "#E6F0EE",
+  },
 
   statItem: {
     alignItems: "center",
@@ -124,29 +124,29 @@ itemDivider: {
   },
 
   iconContainer: {
-  width: 40,
-  height: 40,
-  borderRadius: 12,
-  backgroundColor: "#E5F4F1",
-  justifyContent: "center",
-  alignItems: "center",
-},
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    backgroundColor: "#E5F4F1",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
-item: {
-  flexDirection: "row",
-  alignItems: "center",
-  paddingVertical: 12,
-  paddingHorizontal: 14,
-  minHeight: 64,
-},
+  item: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    minHeight: 64,
+  },
 
-profile_text: {
-  paddingLeft: 14,
-  fontSize: 16,
-  fontWeight: "600",
-  flex: 1,
-  color: "#222222",
-},
+  profile_text: {
+    paddingLeft: 14,
+    fontSize: 16,
+    fontWeight: "600",
+    flex: 1,
+    color: "#222222",
+  },
 
   logoutButton: {
     marginHorizontal: 20,
@@ -177,8 +177,8 @@ export default function Profile() {
   const [packedCount, setPackedCount] = useState(0);
   const [userTrips, setUserTrips] = useState<any[]>([]);
   const [tripSelectType, setTripSelectType] = useState<
-  "packing" | "notes" | "itinerary" | null
->(null);
+    "packing" | "notes" | "itinerary" | null
+  >(null);
   // Load profile statistics whenever Profile screen is opened
   useFocusEffect(
     useCallback(() => {
@@ -243,32 +243,32 @@ export default function Profile() {
   };
 
   const handleSelectTrip = (tripId: string) => {
-  if (tripSelectType === "packing") {
-    router.push({
-      pathname: "/packing-list" as any,
-      params: { id: tripId },
-    });
-  } else if (tripSelectType === "notes") {
-    router.push({
-      pathname: "/notes" as any,
-      params: { id: tripId },
-    });
-  } else if (tripSelectType === "itinerary") {
-    router.push({
-      pathname: "/itinerary" as any,
-      params: { id: tripId },
-    });
-  }
+    if (tripSelectType === "packing") {
+      router.push({
+        pathname: "/packing-list" as any,
+        params: { id: tripId },
+      });
+    } else if (tripSelectType === "notes") {
+      router.push({
+        pathname: "/notes" as any,
+        params: { id: tripId },
+      });
+    } else if (tripSelectType === "itinerary") {
+      router.push({
+        pathname: "/itinerary" as any,
+        params: { id: tripId },
+      });
+    }
 
-  setTripSelectType(null);
-};
+    setTripSelectType(null);
+  };
 
-return (
-  <ScrollView
-    style={styles.container}
-    contentContainerStyle={{ paddingBottom: 30 }}
-    showsVerticalScrollIndicator={false}
-  >
+  return (
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{ paddingBottom: 30 }}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.header}>
         <Background style={styles.background} />
 
@@ -282,9 +282,9 @@ return (
       </View>
 
       <Image
-  source={require("@/assets/images/Profile.png")}
-  style={styles.logo}
-/>
+        source={require("@/assets/images/Profile.png")}
+        style={styles.logo}
+      />
 
       <Text style={styles.pname}>{name}</Text>
       <Text style={styles.username}>{email}</Text>
@@ -310,107 +310,107 @@ return (
       <View style={styles.menucontainer}>
         <Text style={styles.sectionTitle}>Quick Access</Text>
 
-<View style={styles.menuCard}>
-        <TouchableOpacity
-          style={styles.item}
-          onPress={() => router.push("/(tabs)/my-trips" as any)}
-        >
-          <View style={styles.iconContainer}>
-  <Ionicons
-    name="airplane-outline"
-    size={21}
-    color="#4B918C"
-  />
-</View>
-          <Text style={styles.profile_text}>My Trips</Text>
-          <Ionicons
-  name="chevron-forward"
-  size={20}
-  color="#AAAAAA"
-/>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.item}
-          onPress={() => setTripSelectType("packing")}
-        >
-          <View style={styles.iconContainer}>
-  <MaterialCommunityIcons
-    name="bag-suitcase-outline"
-    size={21}
-    color="#4B918C"
-  />
-</View>
-          <Text style={styles.profile_text}>Packing Lists</Text>
-          <Ionicons
-  name="chevron-forward"
-  size={20}
-  color="#AAAAAA"
-/>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.item}
-          onPress={() => setTripSelectType("notes")}
-        >
-          <View style={styles.iconContainer}>
+        <View style={styles.menuCard}>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => router.push("/(tabs)/my-trips" as any)}
+          >
+            <View style={styles.iconContainer}>
+              <Ionicons
+                name="airplane-outline"
+                size={21}
+                color="#4B918C"
+              />
+            </View>
+            <Text style={styles.profile_text}>My Trips</Text>
             <Ionicons
-              name="document-text-outline"
-              size={21}
-              color="#4B918C"
+              name="chevron-forward"
+              size={20}
+              color="#AAAAAA"
             />
-          </View>
+          </TouchableOpacity>
 
-          <Text style={styles.profile_text}>Notes</Text>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => setTripSelectType("packing")}
+          >
+            <View style={styles.iconContainer}>
+              <MaterialCommunityIcons
+                name="bag-suitcase-outline"
+                size={21}
+                color="#4B918C"
+              />
+            </View>
+            <Text style={styles.profile_text}>Packing Lists</Text>
+            <Ionicons
+              name="chevron-forward"
+              size={20}
+              color="#AAAAAA"
+            />
+          </TouchableOpacity>
 
-          <Ionicons
-            name="chevron-forward"
-            size={20}
-            color="#AAAAAA"
-          />
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => setTripSelectType("notes")}
+          >
+            <View style={styles.iconContainer}>
+              <Ionicons
+                name="document-text-outline"
+                size={21}
+                color="#4B918C"
+              />
+            </View>
+
+            <Text style={styles.profile_text}>Notes</Text>
+
+            <Ionicons
+              name="chevron-forward"
+              size={20}
+              color="#AAAAAA"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => setTripSelectType("itinerary")}
+          >
+            <View style={styles.iconContainer}>
+              <Ionicons
+                name="calendar-outline"
+                size={21}
+                color="#4B918C"
+              />
+            </View>
+
+            <Text style={styles.profile_text}>Itinerary</Text>
+
+            <Ionicons
+              name="chevron-forward"
+              size={20}
+              color="#AAAAAA"
+            />
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.sectionTitle}>Account</Text>
+
         <TouchableOpacity
-  style={styles.item}
-  onPress={() => setTripSelectType("itinerary")}
->
-  <View style={styles.iconContainer}>
-    <Ionicons
-      name="calendar-outline"
-      size={21}
-      color="#4B918C"
-    />
-  </View>
-
-  <Text style={styles.profile_text}>Itinerary</Text>
-
-  <Ionicons
-    name="chevron-forward"
-    size={20}
-    color="#AAAAAA"
-  />
-</TouchableOpacity>
-      </View>
-
-<Text style={styles.sectionTitle}>Account</Text>
-
-<TouchableOpacity
-  style={styles.logoutButton}
-        onPress={handleLogout}
-      >
-        <Text style={styles.logoutText}>Log Out</Text>
-      </TouchableOpacity>
+          style={styles.logoutButton}
+          onPress={handleLogout}
+        >
+          <Text style={styles.logoutText}>Log Out</Text>
+        </TouchableOpacity>
       </View>
 
       <TripSelectModal
         visible={tripSelectType !== null}
         title="Choose a Trip"
         subtitle={
-  tripSelectType === "packing"
-    ? "Select a trip to view its packing list"
-    : tripSelectType === "notes"
-    ? "Select a trip to view its notes"
-    : "Select a trip to view its itinerary"
-}
+          tripSelectType === "packing"
+            ? "Select a trip to view its packing list"
+            : tripSelectType === "notes"
+              ? "Select a trip to view its notes"
+              : "Select a trip to view its itinerary"
+        }
         trips={userTrips}
         onSelectTrip={handleSelectTrip}
         onClose={() => setTripSelectType(null)}

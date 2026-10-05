@@ -125,63 +125,63 @@ export default function Login() {
   };
 
   return (
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.topSection}>
-          <BackButton />
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.topSection}>
+        <BackButton />
 
-          <Image
-            source={require("@/assets/images/travelnest-logo.png")}
-            style={styles.logoImage}
-            resizeMode="contain"
-          />
+        <Image
+          source={require("@/assets/images/travelnest-logo.png")}
+          style={styles.logoImage}
+          resizeMode="contain"
+        />
 
-          <View style={styles.headerContainer}>
-            <Text style={styles.headerTitle}>Welcome back</Text>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerTitle}>Welcome back</Text>
 
-            <Text style={styles.headerSubtitle}>
-              Sign in to your account to continue your journey.
-            </Text>
-          </View>
+          <Text style={styles.headerSubtitle}>
+            Sign in to your account to continue your journey.
+          </Text>
         </View>
+      </View>
 
-        <View style={styles.formContainer}>
-          <InputField
-            label="Email"
-            autoCapitalize="none"
-            placeholder="Enter your email"
-            value={email}
-            onChangeText={setEmail}
-            error={fieldsError.email}
-          />
+      <View style={styles.formContainer}>
+        <InputField
+          label="Email"
+          autoCapitalize="none"
+          placeholder="Enter your email"
+          value={email}
+          onChangeText={setEmail}
+          error={fieldsError.email}
+        />
 
-          <InputField
-            label="Password"
-            autoCapitalize="none"
-            placeholder="Enter your password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-            error={fieldsError.password}
-          />
+        <InputField
+          label="Password"
+          autoCapitalize="none"
+          placeholder="Enter your password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          error={fieldsError.password}
+        />
 
-          <Button
-            title="Sign In"
-            type="primary"
-            onPress={handleSignIn}
-            disabled={isLoading}
-            loading={isLoading}
-          />
+        <Button
+          title="Sign In"
+          type="primary"
+          onPress={handleSignIn}
+          disabled={isLoading}
+          loading={isLoading}
+        />
 
-          <View style={styles.loginContainer}>
-            <Text style={styles.loginText}>
-              Don't have an account?{" "}
-            </Text>
+        <View style={styles.loginContainer}>
+          <Text style={styles.loginText}>
+            Don't have an account?{" "}
+          </Text>
 
-            <Link href="/signup" style={styles.loginTextLink}>
-              Sign Up
-            </Link>
-          </View>
+          <Link href="/signup" style={styles.loginTextLink}>
+            Sign Up
+          </Link>
         </View>
-      </SafeAreaView>
+      </View>
+    </SafeAreaView>
   );
 }

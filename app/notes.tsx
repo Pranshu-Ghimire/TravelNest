@@ -113,13 +113,13 @@ const styles = StyleSheet.create({
   },
 
   cardIconContainer: {
-  width: 36,
-  height: 36,
-  borderRadius: 10,
-  backgroundColor: "#E5F4F1",
-  justifyContent: "center",
-  alignItems: "center",
-},
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: "#E5F4F1",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
   cardTitle: {
     fontSize: 17,
@@ -324,9 +324,9 @@ export default function Notes() {
           content: note.content,
           date: note.createdAt?.toDate
             ? note.createdAt.toDate().toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-              })
+              month: "short",
+              day: "numeric",
+            })
             : "",
           icon: (CATEGORY_ICONS[note.category] || "document-text-outline") as keyof typeof Ionicons.glyphMap,
         }));
@@ -390,12 +390,12 @@ export default function Notes() {
           currentNotes.map((note) =>
             note.id === editingNoteId
               ? {
-                  ...note,
-                  title: formTitle.trim(),
-                  category: formCategory,
-                  content: formContent.trim(),
-                  icon: (CATEGORY_ICONS[formCategory] || "document-text-outline") as keyof typeof Ionicons.glyphMap,
-                }
+                ...note,
+                title: formTitle.trim(),
+                category: formCategory,
+                content: formContent.trim(),
+                icon: (CATEGORY_ICONS[formCategory] || "document-text-outline") as keyof typeof Ionicons.glyphMap,
+              }
               : note
           )
         );
@@ -554,12 +554,12 @@ export default function Notes() {
             <View style={styles.cardHeader}>
               <View style={styles.cardTitleRow}>
                 <View style={styles.cardIconContainer}>
-  <Ionicons
-    name={item.icon}
-    size={19}
-    color="#4B918C"
-  />
-</View>
+                  <Ionicons
+                    name={item.icon}
+                    size={19}
+                    color="#4B918C"
+                  />
+                </View>
 
                 <Text style={styles.cardTitle}>
                   {item.title}
@@ -650,7 +650,7 @@ export default function Notes() {
                       style={[
                         styles.categoryChip,
                         formCategory === cat &&
-                          styles.activeCategoryChip,
+                        styles.activeCategoryChip,
                       ]}
                       onPress={() =>
                         setFormCategory(cat)
@@ -660,7 +660,7 @@ export default function Notes() {
                         style={[
                           styles.categoryChipText,
                           formCategory === cat &&
-                            styles.activeCategoryChipText,
+                          styles.activeCategoryChipText,
                         ]}
                       >
                         {cat}

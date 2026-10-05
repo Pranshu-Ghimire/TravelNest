@@ -128,56 +128,56 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-locationRow: {
-  flexDirection: "row",
-  alignItems: "center",
-  gap: 5,
-  marginTop: 10,
-},
+  locationRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    marginTop: 10,
+  },
 
-locationText: {
-  fontSize: 13,
-  color: "#666666",
-  fontWeight: "500",
-  flex: 1,
-},
+  locationText: {
+    fontSize: 13,
+    color: "#666666",
+    fontWeight: "500",
+    flex: 1,
+  },
 
-descriptionText: {
-  fontSize: 14,
-  color: "#555555",
-  marginTop: 8,
-  lineHeight: 20,
-},
+  descriptionText: {
+    fontSize: 14,
+    color: "#555555",
+    marginTop: 8,
+    lineHeight: 20,
+  },
 
-emptyContainer: {
-  paddingVertical: 60,
-  paddingHorizontal: 20,
-  alignItems: "center",
-},
+  emptyContainer: {
+    paddingVertical: 60,
+    paddingHorizontal: 20,
+    alignItems: "center",
+  },
 
-emptyIconContainer: {
-  width: 64,
-  height: 64,
-  borderRadius: 32,
-  backgroundColor: "#E5F4F1",
-  justifyContent: "center",
-  alignItems: "center",
-  marginBottom: 14,
-},
+  emptyIconContainer: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: "#E5F4F1",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 14,
+  },
 
-emptyTitle: {
-  fontSize: 17,
-  fontWeight: "700",
-  color: "#222222",
-  marginBottom: 6,
-},
+  emptyTitle: {
+    fontSize: 17,
+    fontWeight: "700",
+    color: "#222222",
+    marginBottom: 6,
+  },
 
-emptySubtitle: {
-  fontSize: 14,
-  color: "#777777",
-  textAlign: "center",
-  lineHeight: 20,
-},
+  emptySubtitle: {
+    fontSize: 14,
+    color: "#777777",
+    textAlign: "center",
+    lineHeight: 20,
+  },
 
   emptyText: {
     fontSize: 15,
@@ -393,13 +393,13 @@ export default function Itinerary() {
           current.map((act) =>
             act.id === editingActivityId
               ? {
-                  ...act,
-                  title: formTitle.trim(),
-                  day: formDay.trim(),
-                  time: formTime.trim(),
-                  location: formLocation.trim() || undefined,
-                  description: formDescription.trim() || undefined,
-                }
+                ...act,
+                title: formTitle.trim(),
+                day: formDay.trim(),
+                time: formTime.trim(),
+                location: formLocation.trim() || undefined,
+                description: formDescription.trim() || undefined,
+              }
               : act
           )
         );
@@ -523,22 +523,22 @@ export default function Itinerary() {
       <ScrollView contentContainerStyle={styles.content}>
         {uniqueDays.length === 0 ? (
           <View style={styles.emptyContainer}>
-  <View style={styles.emptyIconContainer}>
-    <Ionicons
-      name="calendar-outline"
-      size={30}
-      color="#4B918C"
-    />
-  </View>
+            <View style={styles.emptyIconContainer}>
+              <Ionicons
+                name="calendar-outline"
+                size={30}
+                color="#4B918C"
+              />
+            </View>
 
-  <Text style={styles.emptyTitle}>
-    Your itinerary is empty
-  </Text>
+            <Text style={styles.emptyTitle}>
+              Your itinerary is empty
+            </Text>
 
-  <Text style={styles.emptySubtitle}>
-    Start planning your adventure by adding your first activity.
-  </Text>
-</View>
+            <Text style={styles.emptySubtitle}>
+              Start planning your adventure by adding your first activity.
+            </Text>
+          </View>
         ) : (
           uniqueDays.map((day) => {
             const dayActivities = activities.filter(
